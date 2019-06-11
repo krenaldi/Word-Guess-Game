@@ -8,3 +8,14 @@ body {
     border: 1px solid #ffffff;
     margin: 15px auto;
 }
+
+#bandimage {
+    height: 100px;
+}
+#underscores {
+    height: 100px;
+}
+
+#wrongguess {
+    height: 100px;
+}
