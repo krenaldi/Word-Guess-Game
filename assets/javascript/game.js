@@ -1,6 +1,6 @@
 // ############ GLOBAL VARIABLES ###############
 // Create array that computer uses to select for play
-var words = ["shinedown", "motorhead", "queen", "rival sons", "led zepplin", "black sabbath", "metallica", "foo fighters", "soundgarden", "nirvana", "three days grace", "halestorm", "five finger death punch", "disturbed", "motley crue", "volbeat"];
+var words = ["shinedown", "motorhead", "queen", "rival sons", "led zepplin", "black sabbath", "metallica", "foo fighters", "soundgarden", "nirvana", "three days grace", "halestorm", "five finger death punch", "disturbed", "motley crue", "volbeat", "zz top"];
 
 //Empty variable that holds the word selected from the words array
 var chosenWord = "";
