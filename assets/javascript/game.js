@@ -21,6 +21,7 @@ var wordLetters = [];
 var numBlanks = 0;
 
 // Variables for DOM manipulation
+var guessesLeftCounter = document.getElementById("guessesleft");
 var docUnderScore = document.getElementById("underscores");
 var docWrongGuess = document.getElementById("wrongguess");
 
@@ -86,6 +87,9 @@ function gameStart() {
     }
     console.log(underScores);
 
+    // Resets number of guessLeft to 8
+    guessesLeftCounter.innerHTML = guessesLeft;
+
     // Prints the blanks at the beginning of each round in the HTML
     docUnderScore.innerHTML = underScores.join(" ");
 
@@ -100,6 +104,8 @@ function guesses() {
 
 
     // Update the HTML DOM
+    // Update the number of guesses left
+    guessesLeftCounter.innerHTML = guessesLeft;
     // Print the array of correct guesses and remaining blanks
     docUnderScore.innerHTML = underScores.join(" ");
     // Print the wrong guesses so as to not repeat the same guess

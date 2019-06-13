@@ -19,12 +19,12 @@ body {
     padding-top: 35px; 
 }
 
-#rightguess {
+/* #rightguess {
     height: 100px;
     border: 1px solid #ffffff;
     margin: 15px auto;   
     padding-top: 35px;  
-}
+} */
 
 #wrongguess {
     height: 100px;
