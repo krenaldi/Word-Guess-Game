@@ -1,6 +1,6 @@
 // ############ GLOBAL VARIABLES ###############
 // Create array that computer uses to select for play
-var words = ["shinedown", "motorhead", "queen", "rival sons"];
+var words = ["shinedown", "motorhead", "queen", "rival sons", "led zepplin", "black sabbath", "metallica", "foo fighters", "soundgarden", "nirvana", "three days grace", "halestorm", "five finger death punch", "disturbed", "motley crue", "volbeat"];
 
 //Empty variable that holds the word selected from the words array
 var chosenWord = "";
@@ -26,7 +26,7 @@ var docUnderScore = document.getElementById("underscores");
 var docWrongGuess = document.getElementById("wrongguess");
 
 // checkLetters function is called on the keypress event to check if the key pressed is part of the word
-function checkLetters(letter){
+function checkLetters(letter) {
 
     // Boolean variable that is toggled depending on whether the letter is in the word or not
     var letterInWord = false;
