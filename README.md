@@ -2,13 +2,10 @@
 Online version of Hangman
 
 
-# generate a word at random and store it in a variable
-# display the length of the word to the user
-# correct_guesses is less than the length of the word
-# prompt the user to guess a letter
-# if the guess is correct increment correct_guesses by 1
-# if the guess is incorrect increment incorrect_guesses by 1 
-# and draw the next part of the hangman
-# if the incorrect_guesses is greater than 8, tell the user 
-# they lost and exit the program
-# if correct_guesses is equal to the length of the word, tell the user they won
+## 1. Game starts on load
+## 2. Player presses a letter to guess and start the game
+## 3. If the letter is in the band name, the letter will appear in the blank slots
+## 4. If the letter is not in the band name, the letter will appear below and the user will have one less guess to complete the band name. Player has 8 guesses to win. If player cannot guess the band name in 8 guesses an alert will appear stating they lost and the game will reset.
+## 5. Once the band name is complete the player will get an alert stating that the won and the game will reset.
+
+# NOTE: Some band names have spaces in them. The space bar is a valid choice so if there are still blank slots after the band's name is completed, player will need to press the space to complete the band's name.
