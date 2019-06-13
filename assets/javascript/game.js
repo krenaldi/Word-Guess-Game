@@ -24,6 +24,7 @@ var numBlanks = 0;
 var guessesLeftCounter = document.getElementById("guessesleft");
 var docUnderScore = document.getElementById("underscores");
 var docWrongGuess = document.getElementById("wrongguess");
+var notice = document.getElementById("notice");
 
 // checkLetters function is called on the keypress event to check if the key pressed is part of the word
 function checkLetters(letter) {
@@ -74,6 +75,7 @@ function gameStart() {
 
     console.log(chosenWord);
     console.log(numBlanks);
+    console.log(wordLetters);
 
     // Reset the guess and success array at each round
     underScores = [];
@@ -113,24 +115,16 @@ function guesses() {
 
     // If all letters match the word
     if (wordLetters.toString() === underScores.toString()) {
-        //add to win counter & give user alert
-        //winCounter++;
-        alert("You win!");
-
-        // Update the win counter & restart the game
-        // document.getElementById("win-counter").innerHTML = winCounter;
+        // Show notice that the player won
+        notice.innerHTML = "You Rock!! Press any key to start rocking again!!<br>" + chosenWord.toUpperCase();
+        // Restart the game
         gameStart();
     }
 
     // If run out of guesses
     else if (guessesLeft === 0) {
-        // Add to loss counter
-        //lossCounter++
-        // Give user an alert
-        alert("You lose!");
-
-        // Update the loss counter
-        //document.getElementById("loss-counter").innerHTML = lossCounter;
+        // Show notice that the player lost
+        notice.innerHTML = "Bogus!! Press any key to start rocking again!!";
         // Restart the game
         gameStart();
     }
