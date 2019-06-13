@@ -1,6 +1,8 @@
 // ############ GLOBAL VARIABLES ###############
 // Create array that computer uses to select for play
-var words = ["shinedown", "motorhead", "queen", "rival sons", "led zepplin", "black sabbath", "metallica", "foo fighters", "soundgarden", "nirvana", "three days grace", "halestorm", "five finger death punch", "disturbed", "motley crue", "volbeat", "zz top"];
+var words = ["shinedown", "motorhead", "queen", "rival sons", "led zepplin", "black sabbath", "metallica", "foo fighters", 
+"soundgarden", "nirvana", "three days grace", "halestorm", "five finger death punch", "disturbed", "motley crue", "volbeat", "zz top",
+"mastodon", "slayer", "def leppard", "pantera", "papa roach", "pink floyd", "pop evil", "rage against the machine"];
 
 //Empty variable that holds the word selected from the words array
 var chosenWord = "";
@@ -85,7 +87,13 @@ function gameStart() {
 
     // Create the underscores based on the number of letters from the words array
     for (var i = 0; i < numBlanks; i++) {
-        underScores.push("_");
+        // Loop to see if chosenWord has space in it and if it does use the nbsp HTML tag when generating the underscores
+        if (wordLetters[i] == " "){
+            underScores.push("&nbsp;&nbsp;");
+        // Otherwise push the underscore    
+        } else {
+            underScores.push("_");
+        }
     }
     console.log(underScores);
 
@@ -116,7 +124,7 @@ function guesses() {
     // If all letters match the word
     if (wordLetters.toString() === underScores.toString()) {
         // Show notice that the player won
-        notice.innerHTML = "You Rock!! Press any key to start rocking again!!<br>" + chosenWord.toUpperCase();
+        notice.innerHTML = "You Rock!! Let's keep rocking!!<br>" + chosenWord.toUpperCase();
         // Restart the game
         gameStart();
     }
@@ -124,7 +132,7 @@ function guesses() {
     // If run out of guesses
     else if (guessesLeft === 0) {
         // Show notice that the player lost
-        notice.innerHTML = "Bogus!! Press any key to start rocking again!!";
+        notice.innerHTML = "Bogus!! Let's start rocking again!!";
         // Restart the game
         gameStart();
     }
