@@ -1,8 +1,8 @@
 // ############ GLOBAL VARIABLES ###############
 // Create array that computer uses to select for play
-var words = ["shinedown", "motorhead", "queen", "rival sons", "led zepplin", "black sabbath", "metallica", "foo fighters", 
-"soundgarden", "nirvana", "three days grace", "halestorm", "five finger death punch", "disturbed", "motley crue", "volbeat", "zz top",
-"mastodon", "slayer", "def leppard", "pantera", "papa roach", "pink floyd", "pop evil", "rage against the machine"];
+var words = ["shinedown", "motorhead", "queen", "rival sons", "led zepplin", "black sabbath", "metallica", "foo fighters",
+    "soundgarden", "nirvana", "three days grace", "halestorm", "five finger death punch", "disturbed", "motley crue", "volbeat", "zz top",
+    "mastodon", "slayer", "def leppard", "pantera", "papa roach", "pink floyd", "pop evil", "rage against the machine"];
 
 //Empty variable that holds the word selected from the words array
 var chosenWord = "";
@@ -88,9 +88,9 @@ function gameStart() {
     // Create the underscores based on the number of letters from the words array
     for (var i = 0; i < numBlanks; i++) {
         // Loop to see if chosenWord has space in it and if it does use the nbsp HTML tag when generating the underscores
-        if (wordLetters[i] == " "){
+        if (wordLetters[i] == " ") {
             underScores.push("&nbsp;&nbsp;");
-        // Otherwise push the underscore    
+            // Otherwise push the underscore    
         } else {
             underScores.push("_");
         }
@@ -143,12 +143,15 @@ function guesses() {
 gameStart();
 
 // Event listener to capture users key clicks
-document.addEventListener("keypress", function (event) {
-    // Variable that concerts the event.keyCode character and converts it to lowercase
-    var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(letterGuessed);
+document.onkeyup = function(event) {
+    // Checks to see if key pressed is a letter
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
+    // Converts all key clicks to lowercase
+    var letterGuessed = event.key.toLowerCase();
+    // console.log(letterGuessed);
     // Run function that checks if letter is in word
     checkLetters(letterGuessed);
     // Run function after each round is done
     guesses();
-})
+    }
+}
