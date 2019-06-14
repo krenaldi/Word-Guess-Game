@@ -4,6 +4,7 @@ var words = ["shinedown", "motorhead", "queen", "rival sons", "led zepplin", "bl
     "soundgarden", "nirvana", "three days grace", "halestorm", "five finger death punch", "disturbed", "motley crue", "volbeat", "zz top",
     "mastodon", "slayer", "def leppard", "pantera", "papa roach", "pink floyd", "pop evil", "rage against the machine"];
 
+ //console.log(words.length);   
 //Empty variable that holds the word selected from the words array
 var chosenWord = "";
 
@@ -19,7 +20,7 @@ var underScores = [];
 // Empty array that stores the individual letters of the chosenWord variable
 var wordLetters = [];
 
-// This will be the number of blanks we show based on the solution
+// This will be the number of blanks we show based on the chosenWord selected
 var numBlanks = 0;
 
 // Variables for DOM manipulation
@@ -51,16 +52,18 @@ function checkLetters(letter) {
             }
         }
         // Logging for testing
-        console.log(underScores);
+        //console.log(underScores);
     }
     // If the letter doesn't exist, add to the wrongGuesses array
     else {
+        // Pushes incorrect letter into the wrongGuesses array
         wrongGuesses.push(letter);
-        console.log(wrongGuesses);
+        // Logs array of any wrong guesses
+        // console.log(wrongGuesses);
+        // Decreases the number of guesses left by 1
         guessesLeft--;
     }
 }
-
 
 function gameStart() {
     // Resets the number of guesses back to 0 after last round
@@ -75,9 +78,10 @@ function gameStart() {
     // Count the number of letters in the word
     numBlanks = wordLetters.length;
 
-    console.log(chosenWord);
-    console.log(numBlanks);
-    console.log(wordLetters);
+    // Testing variables in console
+    // console.log(chosenWord);
+    // console.log(numBlanks);
+    // console.log(wordLetters);
 
     // Reset the guess and success array at each round
     underScores = [];
@@ -90,12 +94,15 @@ function gameStart() {
         // Loop to see if chosenWord has space in it and if it does use the nbsp HTML tag when generating the underscores
         if (wordLetters[i] == " ") {
             underScores.push("&nbsp;&nbsp;");
+            //wordLetters.splice();
             // Otherwise push the underscore    
         } else {
             underScores.push("_");
         }
     }
-    console.log(underScores);
+
+    // Testing underScores variable before triggering the checkLetter function 
+    // console.log(underScores);
 
     // Resets number of guessLeft to 8
     guessesLeftCounter.innerHTML = guessesLeft;
@@ -112,7 +119,6 @@ function guesses() {
     // Log status update telling how many wins and guesses are left
     console.log("guessesLeft: " + guessesLeft);
 
-
     // Update the HTML DOM
     // Update the number of guesses left
     guessesLeftCounter.innerHTML = guessesLeft;
@@ -121,8 +127,28 @@ function guesses() {
     // Print the wrong guesses so as to not repeat the same guess
     docWrongGuess.innerHTML = wrongGuesses.join(" ");
 
+    // Variables that filters the space characters from the wordLetters and underScores arrays so they are 
+    // not considered when the word hs been complete
+    var filteredWordLetters = wordLetters.filter(function (element) {
+        return element !== " "
+    })
+    var filteredUnderScores = underScores.filter(function (element) {
+        return element !== "&nbsp;&nbsp;"
+    })
+    // Logging the filteredWordLetters & filteredUnderScores variables to make sure spaces have been removed from array
+    // console.log(filteredWordLetters)
+    // console.log(filteredUnderScores) 
+
     // If all letters match the word
     if (wordLetters.toString() === underScores.toString()) {
+        // Show notice that the player won
+        notice.innerHTML = "You Rock!! Let's keep rocking!!<br>" + chosenWord.toUpperCase();
+        // Restart the game
+        gameStart();
+    }
+
+    // if filtered elements match
+    else if (filteredUnderScores.toString() === filteredWordLetters.toString()) {
         // Show notice that the player won
         notice.innerHTML = "You Rock!! Let's keep rocking!!<br>" + chosenWord.toUpperCase();
         // Restart the game
@@ -143,15 +169,19 @@ function guesses() {
 gameStart();
 
 // Event listener to capture users key clicks
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
+
+    if (wordLetters.includes("&nbsp;&nbsp;")) {
+        alert("space");
+    }
     // Checks to see if key pressed is a letter
     if (event.keyCode >= 65 && event.keyCode <= 90) {
-    // Converts all key clicks to lowercase
-    var letterGuessed = event.key.toLowerCase();
-    // console.log(letterGuessed);
-    // Run function that checks if letter is in word
-    checkLetters(letterGuessed);
-    // Run function after each round is done
-    guesses();
+        // Converts all key clicks to lowercase
+        var letterGuessed = event.key.toLowerCase();
+        // console.log(letterGuessed);
+        // Run function that checks if letter is in word
+        checkLetters(letterGuessed);
+        // Run function after each round is done
+        guesses();
     }
 }
