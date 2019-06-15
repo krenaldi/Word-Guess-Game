@@ -185,9 +185,5 @@ document.onkeyup = function (event) {
         checkLetters(letterGuessed);
         // Run function after each round is done
         guesses();
-        if (letterGuessed === wrongGuesses) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
     }
 }
