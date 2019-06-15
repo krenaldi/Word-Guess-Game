@@ -54,6 +54,12 @@ function checkLetters(letter) {
         // Logging for testing
         //console.log(underScores);
     }
+
+    // Code to compare if letter pressed already exists in wrongGuesses array and alerts user that they already guessed that letter
+    else if (wrongGuesses.includes(letter)) {
+        alert("LETTER ALREADY GUESSED. PLEASE SELECT ANOTHER LETTER.")
+    }
+
     // If the letter doesn't exist, add to the wrongGuesses array
     else {
         // Pushes incorrect letter into the wrongGuesses array
@@ -170,10 +176,6 @@ gameStart();
 
 // Event listener to capture users key clicks
 document.onkeyup = function (event) {
-
-    if (wordLetters.includes("&nbsp;&nbsp;")) {
-        alert("space");
-    }
     // Checks to see if key pressed is a letter
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         // Converts all key clicks to lowercase
@@ -183,5 +185,9 @@ document.onkeyup = function (event) {
         checkLetters(letterGuessed);
         // Run function after each round is done
         guesses();
+        if (letterGuessed === wrongGuesses) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
     }
 }
